@@ -1,0 +1,15 @@
+# Gerados pelo AgentCore CLI, com dados da conta AWS
+.bedrock_agentcore/
+.bedrock_agentcore.yaml
+.dockerignore
+agent_role_*.json
+
+.env
+.env.*
+!.env.example
+
+.venv/
+awsUDA2/
+__pycache__/
+*.py[cod]
+.DS_Store

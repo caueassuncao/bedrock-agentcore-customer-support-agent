@@ -1,0 +1,119 @@
+AgentCore Customer Support Agent - Verification Test Results
+Run at: Sun Sep 20 14:56:44     2026
+Agent: customer_support_agent (us-east-1)
+
+================================================================
+TEST 1 - Order Tracking
+================================================================
+COMMAND:  agentcore invoke '{"prompt": "Can you track order ORD-001?", "customer_id": "CUST-123", "session_id": "t1"}'
+QUESTION: Can you track order ORD-001?
+
+RESPONSE:
+Your order **ORD-001** is **SHIPPED** and on its way via **UPS**. Here are the 
+details:
+
+- **Order total:** $89.99
+- **Item:** Wireless Headphones Pro (1x)
+- **Tracking number:** TRK987654321
+- **Estimated delivery date:** September 22, 2026
+
+Would you like help with anything else regarding this order?
+
+================================================================
+TEST 2 - Refund Processing
+================================================================
+COMMAND:  agentcore invoke '{"prompt": "I want to return my Kindle Paperwhite (ORD-002). Please initiate a refund.", "customer_id": "CUST-123", "session_id": "t2"}'
+QUESTION: I want to return my Kindle Paperwhite (ORD-002). Please initiate a refund.
+
+RESPONSE:
+Your refund for order ORD-002 (Kindle Paperwhite) has been approved. A refund 
+of $139.99 will appear on your account within 3-5 business days. Your refund ID
+is **REF-OU9UJV2F**.
+
+If you need a return shipping label, I can generate one for you. Would you like
+me to create the return label now?
+
+================================================================
+TEST 3 - Knowledge Base (RAG)
+================================================================
+COMMAND:  agentcore invoke '{"prompt": "What are the benefits of the Platinum loyalty tier?", "customer_id": "CUST-123", "session_id": "t3"}'
+QUESTION: What are the benefits of the Platinum loyalty tier?
+
+RESPONSE:
+### Platinum Loyalty Tier Benefits
+
+As a Platinum member (5000 or more points), you get:
+
+- **Free same-day shipping** on eligible items
+- **15% discount** on purchases (across most categories)
+- **Priority customer support** for faster issue resolution
+
+You currently have 4,250 points as a Gold member. Upgrading to Platinum would 
+unlock these enhanced benefits!
+
+================================================================
+TEST 4a - Long-Term Memory (Session A: introduce)
+================================================================
+COMMAND:  agentcore invoke '{"prompt": "Hi, I am Jane. I prefer concise responses.", "customer_id": "CUST-123", "session_id": "s-A"}'
+QUESTION: Hi, I am Jane. I prefer concise responses.
+
+RESPONSE:
+Hello, Jane! I have your details ready.
+
+Your **Order ORD-001** is **SHIPPED** via UPS (Tracking: TRK987654321) and 
+expected to be delivered by **September 22, 2026**.
+
+As a **Gold** member with **4,250 loyalty points**, let me know if you’d like 
+an exact discount calculation for your next purchase or need help with anything
+else!
+
+[waited 180s for long-term memory extraction]
+
+================================================================
+TEST 4b - Long-Term Memory (Session B: recall)
+================================================================
+COMMAND:  agentcore invoke '{"prompt": "Do you remember my name and communication preference?", "customer_id": "CUST-123", "session_id": "s-B"}'
+QUESTION: Do you remember my name and communication preference?
+
+RESPONSE:
+Yes, Jane. I remember your name and that you prefer concise responses.
+
+================================================================
+TEST 5 - Loyalty Discount Calculation
+================================================================
+COMMAND:  agentcore invoke '{"prompt": "I am a Gold member with 4250 points. Calculate my discount on a $150 standard order.", "customer_id": "CUST-123", "session_id": "t5"}'
+QUESTION: I am a Gold member with 4250 points. Calculate my discount on a $150 standard order.
+
+RESPONSE:
+### Your Loyalty Discount Summary
+
+**Order Total:** $150  
+**Your Membership:** Gold  
+**Points Available:** 4,250  
+
+**Discount Breakdown:**
+- **Points Redeemed:** 4,000 points → $40 discount
+- **Gold Tier Discount:** $11
+
+**Final Total:** $99  
+**Total Savings:** $51  
+
+**After This Purchase:**
+- **New Points Balance:** 400 points  
+- **Points Earned from Purchase:** 150 points  
+
+Would you like help with anything else regarding your loyalty points or 
+upgrading to Platinum?
+
+================================================================
+TEST 6 - Browser Tool
+================================================================
+COMMAND:  agentcore invoke '{"prompt": "Go to https://www.udacity.com and tell me the page title.", "customer_id": "CUST-123", "session_id": "t6"}'
+QUESTION: Go to https://www.udacity.com and tell me the page title.
+
+RESPONSE:
+The page title of https://www.udacity.com is:
+
+**"Learn the Latest Tech Skills; Advance Your Career | Udacity"**
+
+ALL TESTS DONE
